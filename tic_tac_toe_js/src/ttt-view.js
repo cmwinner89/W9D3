@@ -3,11 +3,44 @@ class View {
     this.game = game;
     this.$el = $el;
     this.setupBoard();
+    this.bindEvents();
   }
 
-  bindEvents() {}
+  bindEvents() {
+    const applyListener = (event => {
+      // debugger   
+      let $square = $(event.target);
+      let someClass = $square.attr("class")
+      if (someClass) {
+        alert("Invalid Move");
+      } else {
+        this.makeMove($square);
+      }
+      // debugger
+    });
+    // debugger
+    this.$el.on("click", "li", applyListener);
 
-  makeMove($square) {}
+  }
+
+  makeMove($square) {
+    let pos = $square.data("pos");
+    let currentPlayer = this.game.currentPlayer;
+
+    this.game.playMove(pos);
+    $square.addClass(currentPlayer);
+    $square.text(currentPlayer);
+
+    if (this.game.winner()) {
+      // let $figcaption = $("<figcaption>");
+      // $figcaption.text(`You Win, ${currentPlayer}!!!!`);
+      // alert("YOU WINN!!!!");
+      let $disp = $("<h2>");
+      $disp.text("YOU WINN!!");
+      this.$el.append($disp);
+    }
+
+  }
 
   setupBoard() {
     // debugger

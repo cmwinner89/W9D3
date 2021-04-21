@@ -22,3 +22,21 @@ li:hover {
     background-color: yellow;
     cursor: pointer;
 }
+
+.x {
+    background-color: white;
+    color: black;
+}
+.x:hover {
+    background-color: white;
+}
+
+.o {
+    background-color: white;
+    color: blue;
+    border: transparent;
+}
+
+.o:hover{
+    background-color: white;
+}
